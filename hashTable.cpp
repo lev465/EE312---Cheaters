@@ -1,16 +1,20 @@
+//hashTable.cpp
 //
-// Created by Luis Vazquez Delgado on 5/2/20.
-//
-
+//This is the class defined for a hash table. The hash table is an array that contains the file index of the origin for
+//each entry. Collisions are handled by creating new entries in the linked list
+//Written by: Luis Vazquez
+//Lev465
+//05/07/2020
 #include "hashTable.h"
 
 using namespace std;
 
-hashTable::hashTable()
+hashTable::hashTable(unsigned long size)
 {
-    for (int i = 0; i<HASHSIZE; i++)
-        hashArray[i]=NULL;
+    hashArray= new hashNode*[size];
+    hashSize = size;
 }
+
 bool hashTable::emptyKey(unsigned long index)
 {
     if(hashArray[index] == NULL)
@@ -46,8 +50,22 @@ int hashTable::getHashElement(hashNode *element)
         return element->data;
 }
 
+unsigned long hashTable::hashf(string &s)
+{
+    unsigned int p = 11;
+    unsigned long p_i = 1;
+    unsigned long result = 0;
+
+    for(string::size_type i=0; i < s.length(); i++){
+        result = (result + (s[i]-0x30)*p_i);
+        p_i = p_i * p;
+    }
+
+    return result%hashSize;
+}
+
 hashTable::~hashTable()
 {
-    cout << "this is the destructor" << endl;
+    delete[] hashArray;
 }
 

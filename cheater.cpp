@@ -1,6 +1,11 @@
+//cheater.cpp
 //
-// Created by Luis Vazquez Delgado on 5/5/20.
-//
+//This is the class defined for cheaters. It contains the file index of file 1, file 2, and their similarity according to
+//hash collisions
+//Written by: Luis Vazquez
+//Lev465
+//05/07/2020
+
 
 #include "cheater.h"
 
@@ -24,19 +29,4 @@ int cheater::getIn2()
 int cheater::getSim()
 {
     return similar;
-}
-
-bool cheater::operator <(cheater const &rhs)
-{
-    return this->similar < rhs.similar;
-}
-
-bool cheater::operator >(cheater const &rhs)
-{
-    return this->similar > rhs.similar;
-}
-
-bool cheater::operator ==(cheater const &rhs)
-{
-    return this->similar == rhs.similar;
 }
